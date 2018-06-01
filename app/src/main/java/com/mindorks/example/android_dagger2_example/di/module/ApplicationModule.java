@@ -25,7 +25,7 @@ public class ApplicationModule {
     }
 
     @Provides
-    @ApplicationContext
+    @ApplicationContext // 어플리케이션 컨텍스는 주입받은 어플리케이션 컨텍스트가 된다
     Context provideContext() {
         return mApplication;
     }

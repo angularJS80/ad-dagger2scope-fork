@@ -11,6 +11,6 @@ import javax.inject.Scope;
 
 @Scope
 @Retention(RetentionPolicy.RUNTIME)
-public @interface PerActivity { // PerActivity 나와바리를 만든다.
+public @interface SeoulActivity { // PerActivity 나와바리를 만든다.
 }
 

@@ -22,7 +22,7 @@ public class ActivityModule {
     }
 
     @Provides
-    @ActivityContext
+    @ActivityContext // 엑티비티 컨텍스트는 주입받은 엑티비티가 된다
     Context provideContext() {
         return mActivity;
     }

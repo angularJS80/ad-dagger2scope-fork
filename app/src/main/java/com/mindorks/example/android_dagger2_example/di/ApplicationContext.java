@@ -11,5 +11,5 @@ import javax.inject.Qualifier;
 
 @Qualifier
 @Retention(RetentionPolicy.RUNTIME)
-public @interface ApplicationContext {
+public @interface ApplicationContext { // 컨텍스트를 가져다 쓸건데 ApplicationContext 어노테이션을 가져다 쓸것
 }

@@ -25,7 +25,7 @@ public interface ApplicationComponent {
 
     void inject(DemoApplication demoApplication);
 
-    @ApplicationContext
+    @ApplicationContext // 어플리케이션 컨텍스트를 찾아보니 범위를 지정하는 스코프였다. 그렇다면 이범위에 들어와 있는 컨텍스트 세터가 있을것이다.
     Context getContext();
 
     Application getApplication();
