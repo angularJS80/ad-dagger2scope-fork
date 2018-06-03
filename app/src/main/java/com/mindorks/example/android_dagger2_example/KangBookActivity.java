@@ -1,5 +1,7 @@
 package com.mindorks.example.android_dagger2_example;
 
+import android.app.Activity;
+import android.content.Context;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.webkit.WebChromeClient;
@@ -20,31 +22,35 @@ public class KangBookActivity extends AppCompatActivity {
 
     private SeoulActivityComponent seoulActivityComponent;
     WebView webView;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_kang_book);
         getSeoulActivityComponent().inject(this);
         settingWebView();
-        //testJsCall();
-
-
+        testJsCall();
     }
 
+    
     public void settingWebView(){
         webView = (WebView) findViewById(R.id.webView); //webview statement
+
+
         webView.getSettings().setJavaScriptEnabled(true); // javascript 와 연동하게 하는 옵션
         webView.getSettings().setAppCacheEnabled(true);
         webView.getSettings().setDomStorageEnabled(true); // 돔에서 사용중인 스토리지를 사용하게 해주는 옵션 (웹쿠키 저장등
         webView.getSettings().setCacheMode(WebSettings.LOAD_NO_CACHE);
         webView.setWebChromeClient(new WebChromeClient());
-        webView.addJavascriptInterface(new AppCallByJs(this),"appCallByJs");
+        webView.addJavascriptInterface(new AppCallByJs(this),"androidWebView");
 
         webView.loadUrl("https://m.daemyungresort.com/");
         //webView.loadUrl("http://211.249.60.229");
         //webView.loadUrl("http://172.30.1.16:4200/filelist");
 
     }
+
+
     public SeoulActivityComponent getSeoulActivityComponent() {
         if (seoulActivityComponent == null) {
 
@@ -67,6 +73,8 @@ public class KangBookActivity extends AppCompatActivity {
             public void onPageFinished(WebView view, String url) {
                 Gson gson = new Gson();
                 String dataString = gson.toJson(paramMap);
+
+
                 view.loadUrl("javascript:alert('" + dataString +"')");
 
                 view.loadUrl("javascript:appCallByJs.doAndroidToast('" + dataString +"')");
